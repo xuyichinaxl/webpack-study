@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WebpackManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     entry: {
@@ -10,7 +12,12 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
-    plugin:[
-        new HtmlWebpackPlugin()
+    devtool: 'inline-source-map',
+    plugins:[
+        new HtmlWebpackPlugin({
+            title: 'Output'
+        }),
+        new CleanWebpackPlugin(),
+        new WebpackManifestPlugin()
     ]
 }
